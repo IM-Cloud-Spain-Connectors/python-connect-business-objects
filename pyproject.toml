@@ -68,6 +68,7 @@ exclude_lines = [
     "import",
     "raise NotImplementedError",
     "if __name__ == .__main__.:",
+    '@(abc\.)?abstractmethod'
 ]
 
 [tool.coverage.html]
