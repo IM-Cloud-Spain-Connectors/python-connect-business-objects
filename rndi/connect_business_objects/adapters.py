@@ -5,7 +5,6 @@
 #
 from __future__ import annotations
 
-from copy import deepcopy
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
 
@@ -26,7 +25,7 @@ from rndi.connect_business_objects.mixin import (
     HasEvents,
     HasMarketplace,
     HasParameters,
-    HasProduct,
+    HasProduct, HasReadWriteOperations,
 )
 
 
@@ -35,6 +34,7 @@ class Request(
     HasEvents,
     HasMarketplace,
     HasParameters,
+    HasReadWriteOperations,
     RequestSource,
     RequestBuilder,
 ):
@@ -54,16 +54,6 @@ class Request(
 
     def __str__(self) -> str:
         return str(self._data)
-
-    def raw(self, deep_copy: bool = False) -> dict:
-        return deepcopy(self._data) if deep_copy else self._data
-
-    def without(self, key: str) -> Request:
-        self._data.pop(key, None)
-        return self
-
-    def get(self, key: Optional[str] = None, default: Optional[Any] = None) -> Optional[Any]:
-        return self._data.get(key, default)
 
     def request_model(self) -> str:
         return request_model(self.raw())
@@ -162,6 +152,7 @@ class Asset(
     HasMarketplace,
     HasParameters,
     HasProduct,
+    HasReadWriteOperations,
     AssetSource,
     AssetBuilder,
 ):
@@ -182,13 +173,6 @@ class Asset(
 
     def __str__(self) -> str:
         return str(self._data)
-
-    def raw(self, deep_copy: bool = False) -> dict:
-        return deepcopy(self._data) if deep_copy else self._data
-
-    def without(self, key: str) -> Asset:
-        self._data.pop(key, None)
-        return self
 
     def id(self) -> Optional[str]:
         return self._data.get('id')
@@ -367,6 +351,7 @@ class TierConfiguration(
     HasMarketplace,
     HasParameters,
     HasProduct,
+    HasReadWriteOperations,
     TierConfigurationSource,
     TierConfigurationBuilder,
 ):
@@ -387,13 +372,6 @@ class TierConfiguration(
 
     def __str__(self) -> str:
         return str(self._data)
-
-    def raw(self, deep_copy: bool = False) -> dict:
-        return deepcopy(self._data) if deep_copy else self._data
-
-    def without(self, key: str) -> TierConfiguration:
-        self._data.pop(key, None)
-        return self
 
     def id(self) -> Optional[str]:
         return self._data.get('id')

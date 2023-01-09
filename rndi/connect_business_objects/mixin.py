@@ -3,6 +3,7 @@
 #
 # Copyright (c) 2023 Ingram Micro. All Rights Reserved.
 #
+from copy import deepcopy
 from datetime import datetime
 from typing import Any, Dict, List, Optional, TypeVar, Union
 
@@ -16,6 +17,7 @@ THasEvents = TypeVar('THasEvents', bound='HasEvents')
 THasMarketplace = TypeVar('THasMarketplace', bound='HasMarketplace')
 THasParameters = TypeVar('THasParameters', bound='HasParameters')
 THasProduct = TypeVar('THasProduct', bound='HasProduct')
+THasReadWriteOperations = TypeVar('THasReadWriteOperations', bound='HasReadWriteOperations')
 
 
 class HasConfiguration:
@@ -249,3 +251,21 @@ class HasProduct:
             'status': product_status,
         })})
         return self
+
+
+class HasReadWriteOperations:
+    _data: dict
+
+    def with_member(self, key: str, value: Any):
+        self._data.update({key: value})
+        return self
+
+    def without_member(self, key: str) -> THasReadWriteOperations:
+        self._data.pop(key, None)
+        return self
+
+    def get(self, key: Optional[str] = None, default: Optional[Any] = None) -> Optional[Any]:
+        return self._data.get(key, default)
+
+    def raw(self, deep_copy: bool = False) -> dict:
+        return deepcopy(self._data) if deep_copy else self._data

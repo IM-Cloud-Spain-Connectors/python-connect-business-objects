@@ -86,7 +86,7 @@ def test_request_builder_should_return_none_on_not_initialized_members():
 def test_request_builder_should_remove_required_member_from_request():
     r = Request()
     r.with_id('PR-0000-0000-0000-100')
-    r.without('id')
+    r.without_member('id')
 
     assert r.id() is None
 
@@ -182,3 +182,11 @@ def test_tier_configuration_request_builder_should_build_successfully_a_valid_ti
     _shared_request_assertions(raw, r)
 
     assert raw['configuration']['id'] == t.id() == 'TC-001'
+
+
+def test_request_builder_should_properly_implement_read_write_operations_mixin():
+    rid = 'PR-000-000-002'
+    r = Request()
+    r.with_member('id', rid)
+
+    assert r.get('id') == rid

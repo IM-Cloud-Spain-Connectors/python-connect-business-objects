@@ -27,7 +27,7 @@ def test_asset_builder_should_return_none_on_not_initialized_members():
 def test_asset_builder_should_remove_required_member_from_asset():
     a = Asset()
     a.with_id('PR-0000-0000-0000-100')
-    a.without('id')
+    a.without_member('id')
 
     assert a.id() is None
 

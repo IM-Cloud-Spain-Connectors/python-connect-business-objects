@@ -23,7 +23,7 @@ def test_tier_configuration_request_builder_should_return_none_on_not_initialize
 def test_tier_configuration_builder_should_remove_required_member_from_tier_configuration():
     t = TierConfiguration()
     t.with_id('TCR-0000-0000-0000-100')
-    t.without('id')
+    t.without_member('id')
 
     assert t.id() is None
 
