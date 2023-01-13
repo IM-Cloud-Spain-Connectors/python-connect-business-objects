@@ -51,7 +51,7 @@ Allow you to operate with a Connect Request Object (Asset Request or Tier Config
 * Mixins: `HasContract`, `HasEvents`, `HasMarketplace`, `HasParameters`, `RequestSource`.
 
 ```python
-from rndi.connect_business_objects.adapters import Request
+from rndi.connect.business_objects.adapters import Request
 
 # Create a new Request and set some values.
 r = Request()
@@ -60,7 +60,7 @@ r.with_type('purchase')
 r.with_status('pending')
 
 # You can read the values too.
-r.id() # PR-000-000-001
+r.id()  # PR-000-000-001
 ```
 
 ### Asset
@@ -71,7 +71,7 @@ Allow you to operate with a Connect Asset Object.
 * Mixins: `HasConfiguration`, `HasConnection`, `HasContract`, `HasMarketplace`, `HasParameters`, `HasProduct`.
 
 ```python
-from rndi.connect_business_objects.adapters import Asset
+from rndi.connect.business_objects.adapters import Asset
 
 # Create a new Asset and set some values.
 a = Asset()
@@ -82,7 +82,7 @@ a.with_external_uid('9fb50525-a4a4-41a7-ace0-dc3c73796d32')
 a.with_product('PRD-000-000-100', 'enabled')
 
 # You can read the values too.
-a.id() # AS-000-000-001
+a.id()  # AS-000-000-001
 ```
 
 ### TierConfiguration
@@ -93,7 +93,7 @@ Allow you to operate with a Connect Tier Configuration Object.
 * Mixins: `HasConfiguration`, `HasConnection`, `HasMarketplace`, `HasParameters`, `HasProduct`.
 
 ```python
-from rndi.connect_business_objects.adapters import TierConfiguration
+from rndi.connect.business_objects.adapters import TierConfiguration
 
 # Create a new TierConfiguration and set some values.
 t = TierConfiguration()
@@ -102,5 +102,5 @@ t.with_status('active')
 t.with_marketplace('MP-12345')
 
 # You can read the values too.
-t.id() # TC-000-000-000
+t.id()  # TC-000-000-000
 ```

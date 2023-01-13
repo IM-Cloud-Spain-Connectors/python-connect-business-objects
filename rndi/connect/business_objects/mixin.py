@@ -7,8 +7,8 @@ from copy import deepcopy
 from datetime import datetime
 from typing import Any, Dict, List, Optional, TypeVar, Union
 
-from rndi.connect_business_objects.exceptions import MissingParameterError
-from rndi.connect_business_objects.helpers import find_by_id, make_param, merge
+from rndi.connect.business_objects.exceptions import MissingParameterError
+from rndi.connect.business_objects.helpers import find_by_id, make_param, merge
 
 THasConfiguration = TypeVar('THasConfiguration', bound='HasConfiguration')
 THasConnection = TypeVar('THasConnection', bound='HasConnection')

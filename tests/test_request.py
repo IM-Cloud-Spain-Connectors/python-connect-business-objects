@@ -2,8 +2,8 @@ from datetime import datetime
 
 import pytest
 
-from rndi.connect_business_objects.adapters import Request
-from rndi.connect_business_objects.helpers import request_model, merge
+from rndi.connect.business_objects.adapters import Request
+from rndi.connect.business_objects.helpers import request_model, merge
 
 NOTE = 'A note'
 REASON = 'A reason'

@@ -9,7 +9,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
 
-from rndi.connect_business_objects.contracts import (
+from rndi.connect.business_objects.contracts import (
     AssetBuilder,
     AssetSource,
     RequestBuilder,
@@ -17,9 +17,9 @@ from rndi.connect_business_objects.contracts import (
     TierConfigurationBuilder,
     TierConfigurationSource,
 )
-from rndi.connect_business_objects.helpers import find_by_id, make_param, make_tier, merge, request_model
-from rndi.connect_business_objects.exceptions import MissingItemError
-from rndi.connect_business_objects.mixin import (
+from rndi.connect.business_objects.helpers import find_by_id, make_param, make_tier, merge, request_model
+from rndi.connect.business_objects.exceptions import MissingItemError
+from rndi.connect.business_objects.mixin import (
     HasConfiguration,
     HasConnection,
     HasContract,

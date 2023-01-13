@@ -1,6 +1,6 @@
 import pytest
 
-from rndi.connect_business_objects.adapters import TierConfiguration
+from rndi.connect.business_objects.adapters import TierConfiguration
 
 
 def test_tier_configuration_builder_should_raise_value_error_on_invalid_init_value():

@@ -52,7 +52,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "--cov=rndi.connect_business_objects --cov-report=term-missing:skip-covered --cov-report=html --cov-report=xml"
+addopts = "--cov=rndi.connect.business_objects --cov-report=term-missing:skip-covered --cov-report=html --cov-report=xml"
 
 [tool.coverage.run]
 omit = ["tests/*", "venv*/*", "setup.py"]

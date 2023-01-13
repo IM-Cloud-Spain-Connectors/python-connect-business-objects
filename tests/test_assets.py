@@ -1,7 +1,7 @@
 import pytest
 
-from rndi.connect_business_objects.adapters import Asset
-from rndi.connect_business_objects.exceptions import MissingItemError
+from rndi.connect.business_objects.adapters import Asset
+from rndi.connect.business_objects.exceptions import MissingItemError
 
 
 def test_asset_builder_should_raise_value_error_on_invalid_init_value():
