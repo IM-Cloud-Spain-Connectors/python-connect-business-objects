@@ -1,5 +1,4 @@
 import pytest
-
 from rndi.connect.business_objects.adapters import Asset
 from rndi.connect.business_objects.exceptions import MissingItemError
 
@@ -69,7 +68,7 @@ def test_asset_builder_should_build_successfully_a_valid_asset():
         {
             'item_id': 'ITEM_ID_001',
             'item_mpn': 'ITEM_MPN_001',
-            'params': [{'param_id': 'SOME_ITEM_PARAM_ID', 'value': 'ITEM_ID_001_PARAM_VALUE'}]
+            'params': [{'param_id': 'SOME_ITEM_PARAM_ID', 'value': 'ITEM_ID_001_PARAM_VALUE'}],
         },
         {
             'item_id': 'ITEM_ID_001',
@@ -78,8 +77,8 @@ def test_asset_builder_should_build_successfully_a_valid_asset():
         {
             'item_id': 'ITEM_ID_001',
             'item_mpn': 'ITEM_MPN_001_UPDATED',
-            'params': [{'param_id': 'SOME_ITEM_PARAM_ID', 'value': 'ITEM_ID_001_PARAM_VALUE_UPDATED'}]
-        }
+            'params': [{'param_id': 'SOME_ITEM_PARAM_ID', 'value': 'ITEM_ID_001_PARAM_VALUE_UPDATED'}],
+        },
     ])
     a.with_configuration_params([
         {'param_id': 'AS_CFG_ID_001', 'value': 'Cfg value', 'value_error': 'Cfg error value'},
@@ -136,13 +135,16 @@ def test_asset_builder_should_build_successfully_a_valid_asset():
     assert raw['items'][0]['mpn'] == a.item('ITEM_ID_001', 'mpn') == 'ITEM_MPN_001_UPDATED'
 
     assert len(a.item_params('ITEM_ID_001')) == 1
-    assert raw['items'][0]['params'][0]['id'] == a.item_param('ITEM_ID_001', 'SOME_ITEM_PARAM_ID',
-                                                              'id') == 'SOME_ITEM_PARAM_ID'
-    assert raw['items'][0]['params'][0]['value'] == a.item_param('ITEM_ID_001', 'SOME_ITEM_PARAM_ID',
-                                                                 'value') == 'ITEM_ID_001_PARAM_VALUE_UPDATED'
 
-    assert raw['configuration']['params'][0]['id'] == a.configuration_param('AS_CFG_ID_001', 'id') == 'AS_CFG_ID_001'
-    assert raw['configuration']['params'][0]['value'] == a.configuration_param('AS_CFG_ID_001',
-                                                                               'value') == 'Cfg value updated'
-    assert raw['configuration']['params'][0]['value_error'] == a.configuration_param('AS_CFG_ID_001',
-                                                                                     'value_error') == 'Cfg error value updated'
+    item = raw['items'][0]['params'][0]
+    assert item['id'] == a.item_param('ITEM_ID_001', 'SOME_ITEM_PARAM_ID', 'id') == 'SOME_ITEM_PARAM_ID'
+    assert item['value'] == a.item_param(
+        'ITEM_ID_001',
+        'SOME_ITEM_PARAM_ID',
+        'value',
+    ) == 'ITEM_ID_001_PARAM_VALUE_UPDATED'
+
+    param = raw['configuration']['params'][0]
+    assert param['id'] == a.configuration_param('AS_CFG_ID_001', 'id') == 'AS_CFG_ID_001'
+    assert param['value'] == a.configuration_param('AS_CFG_ID_001', 'value') == 'Cfg value updated'
+    assert param['value_error'] == a.configuration_param('AS_CFG_ID_001', 'value_error') == 'Cfg error value updated'

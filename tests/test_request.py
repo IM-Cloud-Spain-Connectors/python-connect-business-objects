@@ -1,9 +1,8 @@
 from datetime import datetime
 
 import pytest
-
 from rndi.connect.business_objects.adapters import Request
-from rndi.connect.business_objects.helpers import request_model, merge
+from rndi.connect.business_objects.helpers import merge, request_model
 
 NOTE = 'A note'
 REASON = 'A reason'
@@ -19,18 +18,18 @@ def test_merge_should_merge_complex_structures():
         'asset': {
             'status': 'active',
             'params': [
-                {'id': 1}
-            ]
-        }
+                {'id': 1},
+            ],
+        },
     }
 
     override = {
         'asset': {
             'status': 'suspended',
             'params': [
-                {'id': 2}
-            ]
-        }
+                {'id': 2},
+            ],
+        },
     }
 
     merged = merge(base, override)

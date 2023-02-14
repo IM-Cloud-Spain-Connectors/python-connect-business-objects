@@ -1,5 +1,4 @@
 import pytest
-
 from rndi.connect.business_objects.adapters import TierConfiguration
 
 
