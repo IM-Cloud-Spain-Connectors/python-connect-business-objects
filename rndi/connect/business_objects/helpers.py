@@ -119,7 +119,7 @@ def request_model(request: dict) -> str:
             {
                 'request': 'tier-config',
                 'object': 'configuration',
-                'types': ['setup'],
+                'types': ['setup', 'update', 'adjustment'],
             },
         ])).get('request')
     except StopIteration:
