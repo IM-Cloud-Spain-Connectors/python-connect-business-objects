@@ -63,6 +63,12 @@ def test_request_model_should_successfully_return_the_request_model():
     asset_request = {'type': 'purchase', 'asset': {}}
     assert 'asset' == request_model(asset_request)
 
+    asset_adjustment = {'type': 'adjustment', 'asset': {}}
+    assert 'asset' == request_model(asset_adjustment)
+
+    tier_config_adjustment = {'type': 'adjustment', 'configuration': {}}
+    assert 'tier-config' == request_model(tier_config_adjustment)
+
     tier_config_request = {'type': 'setup', 'configuration': {}}
     assert 'tier-config' == request_model(tier_config_request)
 
@@ -119,15 +125,36 @@ def test_request_should_build_successfully_a_valid_requests():
     _shared_request_assertions(raw, r)
 
 
+def test_request_model_should_return_tier_config_for_adjustment_tier_config_request():
+    r = Request()
+    r.with_type('adjustment')
+    t = r.tier_configuration()
+    t.with_id('TC-1234')
+    t.with_status('pending')
+    r.with_tier_configuration(t)
+
+    assert request_model(r.raw()) == 'tier-config'
+
+
+def test_request_model_should_return_asset_for_adjustment_asset_request():
+    r = Request()
+    r.with_type('adjustment')
+    a = r.asset()
+    a.with_id('AS-001')
+    a.with_status('pending')
+    r.with_asset(a)
+
+    assert request_model(r.raw()) == 'asset'
+
+
 def test_request_builder_should_build_successfully_a_valid_asset_request():
     r = Request()
-
+    r.with_id('PR-1234')
+    r.with_type('purchase')
     a = r.asset()
     a.with_id('AS-001')
 
     r.with_asset(a)
-    r.with_id('TCR-001')
-    r.with_type('setup')
     r.with_status('pending')
     r.with_marketplace('MP-12345')
     r.with_note(NOTE)
@@ -142,8 +169,8 @@ def test_request_builder_should_build_successfully_a_valid_asset_request():
     assert not r.is_tier_config_request()
     assert r.is_asset_request()
 
-    assert raw['id'] == r.id() == 'TCR-001'
-    assert raw['type'] == r.type() == 'setup'
+    assert raw['id'] == r.id() == 'PR-1234'
+    assert raw['type'] == r.type() == 'purchase'
     assert raw['status'] == r.status() == 'pending'
     _shared_request_assertions(raw, r)
 
