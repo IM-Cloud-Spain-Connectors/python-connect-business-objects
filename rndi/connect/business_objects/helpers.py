@@ -107,7 +107,7 @@ def request_model(request: dict) -> str:
     """
 
     def match_request_type(model: dict) -> bool:
-        return model.get('object') in request or request.get('type') in model.get('types')
+        return model.get('object') in request and request.get('type') in model.get('types')
 
     try:
         return next(filter(match_request_type, [
