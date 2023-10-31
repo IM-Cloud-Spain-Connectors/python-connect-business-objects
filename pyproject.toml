@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rndi-connect-business-objects"
-version = "1.0.0"
+version = "1.0.2"
 description = "Connect Business Object (Request, Asset and Tier Configuration) Interface."
 authors = ["Unay Santisteban <davidunay.santisteban@cloudblue.com>"]
 license = "Apache-2.0"
@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [
     { include = "rndi" }
 ]
-repository = ""
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Operating System :: OS Independent",
